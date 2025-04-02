@@ -13,10 +13,13 @@ def test_casos_basicos():
 def test_entrada_invalida():
     with pytest.raises(ValueError):
         Fibonacci.calculate(-1)
+        
     with pytest.raises(ValueError):
         Fibonacci.calculate(3.5)
+        
     with pytest.raises(ValueError):
         Fibonacci.calculate("texto")
+        
     with pytest.raises(ValueError):
         Fibonacci.calculate(None)
 
