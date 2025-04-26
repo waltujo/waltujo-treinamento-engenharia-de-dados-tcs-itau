@@ -1,0 +1,16 @@
+resource "aws_glue_job" "glue_job_spark" {
+    name = "walter.araujo.glue_job_spark"
+    role_arn = "arn:aws:iam::471112636571:role/guilherme.magalhaes-role-glue"
+
+    worker_type = "G.1X"
+    number_of_workers = 2
+    glue_version = "2.0"
+
+    command {
+        name = "glueetl"
+        script_location = "s3://${aws_s3_bucket.bucket_source_code.bucket}/etl_sor/main.py"
+        python_version = "3"
+    }
+
+    depends_on = [ aws_s3_bucket.bucket_source_code ]
+}

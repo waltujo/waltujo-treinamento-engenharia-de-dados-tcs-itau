@@ -41,7 +41,6 @@ def processar_tabela(spark: SparkSession, tabela: str):
 
 def main():
     spark = create_spark_session()
-
     tabelas = ["contas", "categorias", "transacoes"]
 
     for tabela in tabelas:
