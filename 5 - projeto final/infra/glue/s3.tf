@@ -13,3 +13,9 @@ resource "aws_s3_bucket_object" "glue_job_ingestao_s3" {
   key    = "etl_sor/ingestao_s3.py"
   content = file("${path.module}/../../app/glue/etl_sor/ingestao_s3.py")
 }
+
+resource "aws_s3_bucket_object" "glue_job_ingestao_sot" {
+  bucket = aws_s3_bucket.bucket_source_code.bucket
+  key    = "etl_sot/ingestao_sot.py"
+  content = file("${path.module}/../../app/glue/etl_sot/ingestao_sot.py")
+}

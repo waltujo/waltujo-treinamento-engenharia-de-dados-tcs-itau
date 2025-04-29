@@ -1,0 +1,1 @@
+role_arn = "arn:aws:iam::471112636571:role/walter_araujo_role_glue"

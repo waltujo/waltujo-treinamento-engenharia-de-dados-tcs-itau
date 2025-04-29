@@ -1,0 +1,47 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Paralelo",
+    "States": {
+      "Paralelo": {
+        "Type": "Parallel",
+        "Branches": [
+          {
+            "StartAt": "Glue Ingestao FinancialDB",
+            "States": {
+              "Glue Ingestao FinancialDB": {
+                "Type": "Task",
+                "Resource": "arn:aws:states:::glue:startJobRun.sync",
+                "Arguments": {
+                  "JobName": "walter.araujo.glue_job_spark"
+                },
+                "End": true
+              } 
+            }
+          },
+          {
+            "StartAt": "Glue Ingestao Taxa de Juros",
+            "States": {
+              "Glue Ingestao Taxa de Juros": {
+                "Type": "Task",
+                "Resource": "arn:aws:states:::glue:startJobRun.sync",
+                "Arguments": {
+                  "JobName": "walter.araujo.glue_job_shell"
+                },
+                "End": true
+              }
+            }
+          }
+        ],
+        "Next": "Glue Carga Tabela SOT"
+      },
+      "Glue Carga Tabela SOT": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun",
+        "Arguments": {
+          "JobName": "walter.araujo.glue_job_spark_sot"
+        },
+        "End": true
+      }
+    },
+    "QueryLanguage": "JSONata"
+  }

@@ -26,7 +26,8 @@ def read_mysql_table(spark: SparkSession, table_name: str, db_config: dict) -> D
         .read
         .format("jdbc")
         .option("driver", "com.mysql.cj.jdbc.Driver")
-        .option("url", f"jdbc:mysql://{db_config['host']}/{db_config['database']}")
+        .option("url", f"jdbc:mysql://{db_config['host']}/{db_config['database']}?useSSL=false")
+        .option("ssl", "false")
         .option("user", db_config["user"])
         .option("password", db_config["password"])
         .option("dbtable", table_name)
@@ -36,11 +37,12 @@ def read_mysql_table(spark: SparkSession, table_name: str, db_config: dict) -> D
 def processar_tabela(spark: SparkSession, tabela: str):
     df = read_mysql_table(spark, tabela, DB_CONFIG)
     df = df.withColumn("data_ingestao", F.current_timestamp())
-   
-    df.write.insertInto(f"`walter_araujo_database_sor`.`{tabela}`", overwrite=True)
+    
+    df.write.insertInto(f"walter_araujo_database_sor.{tabela}", overwrite=True)
 
 def main():
     spark = create_spark_session()
+
     tabelas = ["contas", "categorias", "transacoes"]
 
     for tabela in tabelas:

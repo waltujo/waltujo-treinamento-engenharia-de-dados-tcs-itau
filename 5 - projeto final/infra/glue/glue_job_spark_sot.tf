@@ -1,5 +1,5 @@
-resource "aws_glue_job" "glue_job_spark" {
-    name = "walter.araujo.glue_job_spark"
+resource "aws_glue_job" "glue_job_spark_sot" {
+    name = "walter.araujo.glue_job_spark_sot"
     role_arn = "arn:aws:iam::471112636571:role/guilherme.magalhaes-role-glue"
 
     worker_type = "G.1X"
@@ -12,7 +12,7 @@ resource "aws_glue_job" "glue_job_spark" {
 
     command {
         name = "glueetl"
-        script_location = "s3://${aws_s3_bucket.bucket_source_code.bucket}/etl_sor/main.py"
+        script_location = "s3://${aws_s3_bucket.bucket_source_code.bucket}/etl_sot/ingestao_sot.py"
         python_version = "3"
     }
 
