@@ -1,6 +1,6 @@
 resource "aws_glue_job" "glue_job_shell" {
     name = "walter.araujo.glue_job_shell"
-    role_arn = "arn:aws:iam::471112636571:role/guilherme.magalhaes-role-glue"
+    role_arn = var.role_arn
 
     max_capacity = 1.0
     

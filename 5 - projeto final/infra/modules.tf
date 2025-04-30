@@ -4,4 +4,9 @@ module "tables" {
 
 module "glue_job" {
   source = "./glue"
+  role_arn = var.role_arn_walter
+}
+
+module "IAM" {
+  source = "./iam"
 }
