@@ -102,11 +102,11 @@ resource "aws_glue_catalog_table" "tb_sot_financeira" {
             name = "taxa_juros_porcentagem"
             type = "string"
         }
-    }
 
-    partition_keys {
-        name = "data_ingestao"
-        type = "string"
+        columns {
+            name = "data_ingestao"
+            type = "string"
+        }
     }
 
     depends_on = [aws_glue_catalog_database.walteraraujo_database_sot]

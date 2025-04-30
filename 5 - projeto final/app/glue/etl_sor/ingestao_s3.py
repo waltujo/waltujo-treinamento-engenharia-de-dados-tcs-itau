@@ -3,9 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 S3_FILE_PATH = "s3://recepcao-taxa-de-juros/interest_rate.csv"
-
 S3_PARQUET_PATH = "s3://walter-araujo-bucket-exemplo/interest_rate/"
-
 DATABASE_NAME = "walter_araujo_database_sor"
 TABLE_NAME = "interest_rate"
 
