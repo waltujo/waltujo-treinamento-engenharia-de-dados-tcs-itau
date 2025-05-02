@@ -10,3 +10,8 @@ module "glue_job" {
 module "IAM" {
   source = "./iam"
 }
+
+module "lambda" {
+  source = "./lambda"
+  role_arn = var.role_arn_walter
+}

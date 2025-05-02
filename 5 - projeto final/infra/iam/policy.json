@@ -9,7 +9,8 @@
           "athena:*",
           "states:*",
           "events:*",
-          "cloudwatch:*"
+          "cloudwatch:*",
+          "lambda:*"
         ],
         "Resource": "*"
       }
